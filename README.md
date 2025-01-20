@@ -1,64 +1,93 @@
-# openssl-evp-cpp
+# OpenSSL-EVP-C++
 
-This is a introduction project showcasing how to use the OpenSSL EVP API (openssl/evp.h) for implementing various cryptographic techniques using c++. The project focuses on utilizing the API for:
+This project demonstrates how to use the OpenSSL EVP API (`openssl/evp.h`) in C++ to implement various cryptographic techniques. It serves as an introductory guide to the powerful features provided by OpenSSL's EVP API, covering the following areas:
 
-    Hashing: Securely hashing data with various algorithms.
-    Generating Keys: Creating cryptographic keys for signing, encryption, and decryption tasks.
-    Signing: Using private keys to sign data for authentication.
-    Verifying: Verifying signatures to ensure data integrity and authenticity.
+- **Hashing**: Securely hash data using various algorithms.
+- **Key Generation**: Create cryptographic keys for signing, encryption, and decryption tasks.
+- **Signing**: Use private keys to sign data for authentication purposes.
+- **Verifying**: Verify signatures to ensure data integrity and authenticity.
 
-This project serves as an introduction to the powerful cryptographic features provided by OpenSSL’s EVP API.
+---
+
+## Features
+- Comprehensive examples of hashing, signing, and verifying.
+- Demonstrates how to handle cryptographic key generation.
+- A clean and structured approach to using the EVP API in C++.
 
 ---
 
 ## Prerequisites
 
-Before running the program, ensure you have the following dependencies installed:
+Ensure the following dependencies are installed:
 
-### Install OpenSSL:
+### OpenSSL Installation
 
-#### On Ubuntu/Debian-based systems:
-
-    sudo apt-get install openssl
-
-#### On Arch-based systems:
-
-    sudo pacman -S openssl
-
-## Execution
-
-#### Building the Program:
-
-To compile the program, follow these steps:
-1. Clean Previous Builds:
+#### On Ubuntu/Debian-based Systems:
 ```bash
-make clean
+sudo apt-get install openssl
 ```
 
-2. Build the Program:
+#### On Arch-based Systems:
 ```bash
-make main
+sudo pacman -S openssl
 ```
 
-#### Usage
+### Development Tools
+- GCC or Clang compiler
+- `make` utility
 
-Provide usage examples or instructions for running the program, including any necessary commands or arguments.
-```bash
-./object/main
-```
-or
-```bash
-make exec
-```
+---
+
+## Getting Started
+
+### Building the Program
+
+1. **Clean Previous Builds**
+   Remove any existing compiled files:
+   ```bash
+   make clean
+   ```
+
+2. **Compile the Program**
+   Build the main executable:
+   ```bash
+   make main
+   ```
+
+3. **Run the Program**
+   Execute the compiled program using:
+   ```bash
+   ./object/main
+   ```
+   Alternatively, you can use the following command:
+   ```bash
+   make exec
+   ```
+
+---
+
+## Example Usage
+
+Demonstrate cryptographic techniques like:
+- Hashing a message
+- Generating and saving cryptographic keys
+- Signing a message with a private key
+- Verifying the signature with a public key
+
+Refer to the source code for detailed examples.
+
+---
 
 ## License
 
-This project is licensed under the OpenSSL License and Apache License 2.0.
-Please refer to the LICENSE file for detailed information.
+This project is licensed under both the OpenSSL License and the Apache License 2.0. For more details, refer to the LICENSE file or the links below:
 
-    OpenSSL License: https://www.openssl.org/source/license.html.
-    Apache License 2.0: http://www.apache.org/licenses/LICENSE-2.0.
+- [OpenSSL License](https://www.openssl.org/source/license.html)
+- [Apache License 2.0](http://www.apache.org/licenses/LICENSE-2.0)
+
+---
 
 ## Acknowledgments
 
-This project uses the OpenSSL library, which is licensed under the OpenSSL License and the Apache License 2.0.
+This project utilizes the OpenSSL library, an industry-standard tool for secure communication and cryptographic operations.
+
