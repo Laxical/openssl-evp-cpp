@@ -58,15 +58,32 @@ int digestSignData(const unsigned char* data, int data_len, EVP_PKEY* private_ke
     EVP_PKEY* evp_key = private_key;
 
     if(EVP_DigestSignInit(context.get(), nullptr, EVP_sha256(), nullptr, evp_key) != 1) {
+        printf("here1\n");
         return -1;
     }
 
     if(EVP_DigestSignUpdate(context.get(), data, data_len) != 1) {
+        printf("here2\n");
         return -1;
     }
 
-    *sig = (unsigned char *)OPENSSL_malloc(EVP_PKEY_size(evp_key));
+
+    size_t required_size = 0;
+    if (EVP_DigestSignFinal(context.get(), nullptr, &required_size) != 1) {
+        printf("DigestSignFinal size check failed\n");
+        ERR_print_errors_fp(stderr);
+        return -1;
+    }
+
+    *sig = (unsigned char *)OPENSSL_malloc(required_size);
+    if (!(*sig)) {
+        printf("Memory allocation for signature failed\n");
+        return -1;
+    }
+    *sig_len = required_size;
+    
     if(EVP_DigestSignFinal(context.get(), *sig, sig_len) != 1) {
+        printf("here3\n");
         return -1;
     }
 

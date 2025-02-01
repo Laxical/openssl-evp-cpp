@@ -81,51 +81,74 @@ int main() {
 
     cout<<"Hash: " << hash << endl;
 
-    unsigned char* hashed_data = reinterpret_cast<unsigned char*>(const_cast<char*>(hash.c_str()));
-
-    unsigned char *sig = nullptr;
-    unsigned int sig_len = 0;
-
-    if(signData(hashed_data, sizeof(hashed_data) - 1, private_key, &sig, &sig_len) == -1) {
-        cout<<"signData() failed...\n";
-        return 1;
-    }
-
-    cout<<"Signature1: ";
-    printSignature(sig, sig_len);
-    cout<< endl;
-
-    int result = verifySignature(hashed_data, sizeof(hashed_data) - 1, public_key, sig, sig_len);
-    cout<<"result1: "<<result<<endl;
-
-    if (result == 1) {
-        std::cout << "Signature1 is valid." << endl;
-    } else {
-        std::cout << "Signature1 is invalid." << endl;
-    }
-
-    unsigned char *sig1 = nullptr;
-    unsigned int sig_len1 = 0;
-
     unsigned char* data1 = reinterpret_cast<unsigned char*>(const_cast<char*>(data.c_str()));
+
+    unsigned char *sig1= nullptr;
+    unsigned int sig_len1 = 0;
 
     if(signData(data1, sizeof(data1) - 1, private_key, &sig1, &sig_len1) == -1) {
         cout<<"signData() failed...\n";
         return 1;
     }
 
-    cout<<"\nSignature2: ";
-    printSignature(sig, sig_len);
+    cout<<"Signature1: ";
+    printSignature(sig1, sig_len1);
     cout<< endl;
 
     int result1 = verifySignature(data1, sizeof(data1) - 1, public_key, sig1, sig_len1);
-    cout<<"result2: "<<result<<endl;
+    cout<<"result1: "<<result1<<endl;
 
     if (result1 == 1) {
+        std::cout << "Signature1 is valid." << endl;
+    } else {
+        std::cout << "Signature1 is invalid." << endl;
+    }
+
+    unsigned char *sig2 = nullptr;
+    size_t sig_len2 = 0;
+
+    unsigned char* data2 = reinterpret_cast<unsigned char*>(const_cast<char*>(data.c_str()));
+
+    if(digestSignData(data2, sizeof(data2) - 1, private_key, &sig2, &sig_len2) == -1) {
+        cout<<"digestSignData() failed...\n";
+        return 1;
+    }
+
+    cout<<"\nSignature2: ";
+    printSignature(sig2, sig_len2);
+    cout<< endl;
+
+    int result2 = digestVerifyData(data2, sizeof(data2) - 1, public_key, sig2, sig_len2);
+    cout<<"result2: "<<result2<<endl;
+
+    if (result2 == 1) {
         std::cout << "Signature2 is valid." << endl;
     } else {
         std::cout << "Signature2 is invalid." << endl;
     }
+
+    // unsigned char *sig3 = nullptr;
+    // unsigned int sig_len3 = 0;
+
+    // unsigned char* data3 = reinterpret_cast<unsigned char*>(const_cast<char*>(data.c_str()));
+
+    // if(signData(data3, sizeof(data3) - 1, private_key, &sig3, &sig_len3) == -1) {
+    //     cout<<"signData() failed...\n";
+    //     return 1;
+    // }
+
+    // cout<<"\nSignature3: ";
+    // printSignature(sig3, sig_len3);
+    // cout<< endl;
+
+    // int result3 = verifySignature(data3, sizeof(data3) - 1, public_key, sig3, sig_len3);
+    // cout<<"result3: "<<result3<<endl;
+
+    // if (result3 == 1) {
+    //     std::cout << "Signature3 is valid." << endl;
+    // } else {
+    //     std::cout << "Signature3 is invalid." << endl;
+    // }
 
     return 0;
 }
